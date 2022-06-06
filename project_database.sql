@@ -94,6 +94,7 @@ CREATE TABLE belongs_to_field (
   FOREIGN KEY (sfield_id) REFERENCES scientific_fields (sfield_id) ON DELETE CASCADE
 );
 
+/* ======================================== QUERIES ======================================== */
 
 /* 3.1 QUERY
 	Show all available programs and all projects (projects.start_date, projects.duration, executive.exec_name).
@@ -207,6 +208,8 @@ FROM researchers r JOIN works_on wo ON r.res_id = wo.res_id JOIN projects p ON w
 WHERE p.proj_id NOT IN (SELECT DISTINCT proj_id FROM deliverables)
 GROUP BY r.res_id
 HAVING COUNT(DISTINCT p.proj_id) >= 5;
+
+/* ======================================== TRIGGERS - CONDITIONS ======================================== */
 
 DELIMITER $$
 CREATE TRIGGER evaluatorNotTheManager
